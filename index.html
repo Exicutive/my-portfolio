@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Oluwadamilare Victor — Backend & AI Engineer</title>
+<meta name="description" content="Backend Engineer and AI Developer based in Lagos, Nigeria. Specializing in Python, FastAPI, PostgreSQL, Docker, AWS, and LLM systems." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+/* ─────────────────────────────────────────
+   TOKENS
+───────────────────────────────────────── */
+:root {
+  --bg:          #0a0f1a;
+  --bg2:         #0d1424;
+  --surface:     #111827;
+  --surface2:    #1a2235;
+  --border:      #1e2d45;
+  --border2:     #243552;
+  --teal:        #64ffda;
+  --teal-dim:    rgba(100,255,218,0.1);
+  --teal-dim2:   rgba(100,255,218,0.05);
+  --slate:       #8892b0;
+  --slate-light: #a8b2d8;
+  --white:       #ccd6f6;
+  --white-bright:#e6f1ff;
+  --ff-sans:     'Inter', system-ui, sans-serif;
+  --ff-mono:     'Fira Code', monospace;
+  --nav-w:       280px;
+  --ease:        cubic-bezier(.4,0,.2,1);
+}
+
+/* ─────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--slate);
+  font-family: var(--ff-sans);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--teal); }
+
+/* selection */
+::selection { background: var(--teal-dim); color: var(--teal); }
+
+/* links */
+a { color: var(--teal); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--teal); }
+
+/* mono util */
+.mono { font-family: var(--ff-mono); font-size: .85em; }
+
+/* ─────────────────────────────────────────
+   LAYOUT — two-column sticky sidebar
+───────────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: var(--nav-w) 1fr;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  gap: 0 80px;
+}
+
+/* ─────────────────────────────────────────
+   LEFT / SIDEBAR
+───────────────────────────────────────── */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 80px 0 64px;
+}
+
+.sidebar-top {}
+
+.name {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--white-bright);
+  letter-spacing: -.5px;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: .02em;
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--slate);
+  max-width: 220px;
+  line-height: 1.65;
+  margin-bottom: 48px;
+}
+
+/* nav links */
+.nav-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+
+.nav-item a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+  color: var(--slate);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transition: color .2s var(--ease);
+  text-decoration: none;
+  position: relative;
+}
+
+.nav-item a::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--slate);
+  transition: width .25s var(--ease), background .2s;
+  flex-shrink: 0;
+}
+
+.nav-item a:hover,
+.nav-item a.active {
+  color: var(--white-bright);
+}
+
+.nav-item a:hover::before,
+.nav-item a.active::before {
+  width: 56px;
+  background: var(--teal);
+}
+
+/* social icons row */
+.social-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.social-row a {
+  color: var(--slate);
+  transition: color .2s, transform .2s;
+  display: flex;
+  align-items: center;
+}
+
+.social-row a:hover {
+  color: var(--teal);
+  transform: translateY(-2px);
+}
+
+.social-row svg { width: 20px; height: 20px; fill: currentColor; }
+
+/* available badge */
+.avail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--teal);
+  font-family: var(--ff-mono);
+  margin-bottom: 32px;
+}
+.avail-badge::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: ping 2s infinite;
+  flex-shrink: 0;
+}
+@keyframes ping {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .5; transform: scale(1.3); }
+}
+
+/* ─────────────────────────────────────────
+   RIGHT / MAIN CONTENT
+───────────────────────────────────────── */
+main {
+  padding: 80px 0 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ─────────────────────────────────────────
+   SECTION BASE
+───────────────────────────────────────── */
+.section {
+  padding: 80px 0 24px;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-label {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  letter-spacing: .14em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 64px;
+  background: var(--border2);
+}
+
+/* ─────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────── */
+#about {
+  padding-top: 0;
+}
+
+.about-intro {
+  font-size: 15px;
+  color: var(--slate-light);
+  line-height: 1.8;
+  max-width: 540px;
+  margin-bottom: 18px;
+}
+
+.about-intro strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.about-intro a {
+  color: var(--teal);
+  border-bottom: 1px solid transparent;
+  transition: border-color .2s;
+}
+.about-intro a:hover { border-bottom-color: var(--teal); }
+
+.edu-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  background: var(--teal-dim2);
+  margin-top: 28px;
+  max-width: 440px;
+  transition: border-color .25s;
+}
+.edu-row:hover { border-color: var(--teal); }
+
+.edu-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.edu-text {}
+.edu-degree { font-size: 13px; color: var(--white); font-weight: 500; }
+.edu-sub { font-size: 12px; color: var(--slate); font-family: var(--ff-mono); }
+.edu-gpa { font-size: 12px; color: var(--teal); font-family: var(--ff-mono); margin-top: 2px; }
+
+/* ─────────────────────────────────────────
+   EXPERIENCE
+───────────────────────────────────────── */
+.exp-list { display: flex; flex-direction: column; gap: 2px; }
+
+.exp-card {
+  padding: 24px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: background .25s, border-color .25s;
+  cursor: default;
+  position: relative;
+}
+
+.exp-card:hover {
+  background: var(--surface2);
+  border-color: var(--border2);
+}
+
+.exp-top {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 0 24px;
+  align-items: start;
+}
+
+.exp-period {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  color: var(--slate);
+  padding-top: 3px;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+.exp-right {}
+
+.exp-role {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exp-role .at { color: var(--teal); font-weight: 400; font-size: 14px; }
+
+.exp-company-sub {
+  font-size: 12px;
+  color: var(--slate);
+  font-family: var(--ff-mono);
+  margin-bottom: 12px;
+}
+
+.exp-desc {
+  font-size: 14px;
+  color: var(--slate);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  padding: 4px 12px;
+  background: var(--teal-dim);
+  color: var(--teal);
+  border-radius: 2px;
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────
+   PROJECTS
+───────────────────────────────────────── */
+.proj-list { display: flex; flex-direction: column; gap: 2px; }
+
+.proj-card {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 0 24px;
+  padding: 24px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: background .25s, border-color .25s;
+  cursor: default;
+  align-items: start;
+}
+
+.proj-card:hover {
+  background: var(--surface2);
+  border-color: var(--border2);
+}
+
+.proj-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--teal);
+  border-radius: 1px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.proj-thumb-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: var(--teal);
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  text-align: center;
+}
+
+.proj-thumb-icon { font-size: 24px; margin-bottom: 4px; }
+
+.proj-body {}
+
+.proj-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.proj-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.proj-status {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  padding: 3px 9px;
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.proj-status.wip { border-color: #fbbf24; color: #fbbf24; }
+
+.proj-desc {
+  font-size: 13px;
+  color: var(--slate);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.proj-impact {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  color: var(--teal);
+  margin-bottom: 14px;
+  padding-left: 12px;
+  border-left: 2px solid var(--teal);
+}
+
+/* ─────────────────────────────────────────
+   SKILLS
+───────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.skill-group {
+  padding: 24px;
+  border: 1px solid var(--border);
+  background: var(--teal-dim2);
+  transition: border-color .25s;
+}
+
+.skill-group:hover { border-color: var(--border2); }
+
+.sg-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+  font-family: var(--ff-mono);
+}
+
+.sg-sub {
+  font-size: 11px;
+  color: var(--slate);
+  margin-bottom: 16px;
+  letter-spacing: .04em;
+}
+
+.sg-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.sg-pill {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  padding: 4px 11px;
+  border: 1px solid var(--border2);
+  color: var(--slate-light);
+  border-radius: 2px;
+  transition: all .2s;
+  cursor: default;
+}
+
+.sg-pill:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: var(--teal-dim);
+}
+
+.sg-pill.core {
+  border-color: rgba(100,255,218,.35);
+  color: var(--teal);
+  background: var(--teal-dim);
+}
+
+/* ─────────────────────────────────────────
+   CONTACT
+───────────────────────────────────────── */
+.contact-intro {
+  font-size: 14px;
+  color: var(--slate);
+  line-height: 1.75;
+  max-width: 460px;
+  margin-bottom: 36px;
+}
+
+.contact-links { display: flex; flex-direction: column; gap: 10px; max-width: 400px; }
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  color: var(--slate-light);
+  text-decoration: none;
+  font-size: 13px;
+  transition: all .2s;
+  background: transparent;
+}
+
+.contact-item:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: var(--teal-dim2);
+  transform: translateX(4px);
+}
+
+.contact-item svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; flex-shrink: 0; }
+.contact-item-label { font-size: 10px; color: var(--slate); font-family: var(--ff-mono); letter-spacing: .08em; text-transform: uppercase; display: block; }
+.contact-item-val { font-size: 13px; font-family: var(--ff-mono); }
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-decoration: none;
+  transition: all .2s;
+  margin-top: 28px;
+  border-radius: 2px;
+}
+.cta-btn:hover {
+  background: var(--teal-dim);
+  transform: translateY(-2px);
+}
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+.footer-note {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  color: var(--slate);
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  line-height: 1.6;
+}
+
+.footer-note a { color: var(--teal); }
+
+/* ─────────────────────────────────────────
+   MOBILE HEADER (hidden on desktop)
+───────────────────────────────────────── */
+.mobile-header { display: none; }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+    gap: 0;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    padding: 40px 0 0;
+  }
+
+  .sidebar-top { margin-bottom: 0; }
+  .tagline { max-width: 100%; }
+  .nav-list { display: none; }
+
+  .mobile-header {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(10,15,26,.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+  }
+
+  .mobile-nav {
+    display: flex;
+    gap: 0;
+    list-style: none;
+    overflow-x: auto;
+    padding: 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .mobile-nav::-webkit-scrollbar { display: none; }
+
+  .mobile-nav a {
+    display: block;
+    padding: 14px 16px;
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--slate);
+    white-space: nowrap;
+    transition: color .2s;
+    text-decoration: none;
+    font-family: var(--ff-mono);
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a.active { color: var(--teal); }
+
+  main { padding: 40px 0 80px; }
+
+  .section { padding: 60px 0 20px; }
+
+  .exp-top { grid-template-columns: 1fr; gap: 4px; }
+  .exp-period { padding-top: 0; }
+
+  .proj-card { grid-template-columns: 1fr; }
+  .proj-thumb { aspect-ratio: 16/7; }
+
+  .skills-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .name { font-size: 22px; }
+  .section-label { font-size: 11px; }
+  .exp-role { font-size: 14px; flex-wrap: wrap; }
+  .proj-name { font-size: 14px; }
+}
+
+/* ─────────────────────────────────────────
+   HIGHLIGHT LINE — vertical accent
+───────────────────────────────────────── */
+.exp-card:hover .exp-role .at,
+.proj-card:hover .proj-name {
+  color: var(--teal);
+  transition: color .2s;
+}
+
+/* GLOWING dot decoration */
+.glow-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  margin-right: 6px;
+  box-shadow: 0 0 8px var(--teal);
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE STICKY HEADER -->
+<div class="mobile-header">
+  <ul class="mobile-nav">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+<div class="layout">
+
+  <!-- ══════════ SIDEBAR ══════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="avail-badge">Available for work</div>
+      <h1 class="name">Oluwadamilare<br>Victor</h1>
+      <p class="title">Backend Engineer &amp; AI Developer</p>
+      <p class="tagline">I build scalable APIs, cloud infrastructure, and intelligent AI systems.</p>
+
+      <nav aria-label="Page sections">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#about" class="active">About</a></li>
+          <li class="nav-item"><a href="#experience">Experience</a></li>
+          <li class="nav-item"><a href="#projects">Projects</a></li>
+          <li class="nav-item"><a href="#skills">Skills</a></li>
+          <li class="nav-item"><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="social-row">
+        <!-- GitHub -->
+        <a href="https://github.com/Exicutive" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/akinpelu-oluwadamilare-547801256/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:akinpeluoluwadamilare79@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </a>
+        <!-- Twitter/X -->
+        <a href="https://x.com/x_raikes?s=21" aria-label="Twitter">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══════════ MAIN ══════════ -->
+  <main>
+
+    <!-- ── ABOUT ── -->
+    <section class="section" id="about">
+      <p class="about-intro" style="text-align: justify;">
+        I'm a <strong>backend engineer</strong> based in Lagos, Nigeria, focused on building high-performance systems that power real-world products. Currently at <strong>Landmark Corporate Realty</strong>, where I architect the APIs, databases, and infrastructure that run a production real estate platform.
+      </p>
+      <p class="about-intro" style="text-align: justify;">
+        My work sits at the intersection of <strong>backend engineering</strong> and <strong>AI/LLM development</strong>, from fine-tuning language models and building intelligent pipelines, to designing secure, scalable cloud deployments on <strong>AWS</strong> with Docker and FastAPI.
+      </p>
+      <p class="about-intro" style="text-align: justify;">
+        I'm drawn to hard problems: systems that need to be fast, reliable and maintainable under pressure.
+      </p>
+
+      <div class="edu-row">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-text">
+          <div class="edu-degree">B.Sc. Computer Science</div>
+          <div class="edu-sub">Osun State University · 2021 – 2024</div>
+          <div class="edu-gpa">4.** / 5.0 — Second Class Upper · Top 4 of Department</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EXPERIENCE ── -->
+    <section class="section" id="experience">
+      <div class="section-label">Experience</div>
+
+      <div class="exp-list">
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <span class="exp-period">Jun 2025 — Present</span>
+            <div class="exp-right">
+              <div class="exp-role">
+                Backend Developer <span class="at">@ Landmark Corporate Realty Limited</span>
+              </div>
+              <div class="exp-company-sub">Lagos, Nigeria · Full-time</div>
+              <p class="exp-desc">
+                Lead backend development for a production real estate platform designing REST APIs, resident onboarding flows, role-based access control, and payment integrations. Manage the full deployment lifecycle including Docker containers, Nginx configuration, and AWS EC2 infrastructure.
+              </p>
+              <div class="chip-row">
+                <span class="chip">FastAPI</span>
+                <span class="chip">Python</span>
+                <span class="chip">PostgreSQL</span>
+                <span class="chip">Docker</span>
+                <span class="chip">AWS EC2</span>
+                <span class="chip">Nginx</span>
+                <span class="chip">JWT / RBAC</span>
+                <span class="chip">Redis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <span class="exp-period">Mar 2025</span>
+            <div class="exp-right">
+              <div class="exp-role">
+                AI / LLM Developer <span class="at">@ Freelance</span>
+              </div>
+              <div class="exp-company-sub">Remote · Contract</div>
+              <p class="exp-desc">
+                Built AI-assisted developer tooling with Meta LLaMA fine-tuning models for code generation tasks and applying prompt engineering to create automation pipelines that measurably reduced manual engineering effort.
+              </p>
+              <div class="chip-row">
+                <span class="chip">Meta LLaMA</span>
+                <span class="chip">LLM Fine-tuning</span>
+                <span class="chip">Prompt Engineering</span>
+                <span class="chip">Python</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <span class="exp-period">Oct 2024 — Jan 2025</span>
+            <div class="exp-right">
+              <div class="exp-role">
+                AI Trainer <span class="at">@ Freelance</span>
+              </div>
+              <div class="exp-company-sub">Remote · Contract</div>
+              <p class="exp-desc">
+                Evaluated and refined large language models through structured testing, NLP quality assessment, and performance feedback contributing to improved model accuracy, response quality, and language understanding.
+              </p>
+              <div class="chip-row">
+                <span class="chip">LLM Evaluation</span>
+                <span class="chip">NLP</span>
+                <span class="chip">Quality Assessment</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <span class="exp-period">May — Oct 2023</span>
+            <div class="exp-right">
+              <div class="exp-role">
+                Data Analyst Intern <span class="at">@ Lagos State Ministry of Education</span>
+              </div>
+              <div class="exp-company-sub">Lagos, Nigeria · Internship</div>
+              <p class="exp-desc">
+                Analyzed educational datasets to surface trends and prepared stakeholder reports. Supported data validation workflows and contributed Python-based analysis to research-driven decision-making.
+              </p>
+              <div class="chip-row">
+                <span class="chip">Python</span>
+                <span class="chip">pandas</span>
+                <span class="chip">Data Visualization</span>
+                <span class="chip">Reporting</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section class="section" id="projects">
+      <div class="section-label">Projects</div>
+
+      <div class="proj-list">
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-inner">
+              <div class="proj-thumb-icon">🏢</div>
+              <span>Real Estate<br>Platform</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-header">
+              <div class="proj-name">Real Estate Management Application</div>
+              <span class="proj-status">Complete</span>
+            </div>
+            <p class="proj-desc">
+              Production backend for a multi-tenant real estate application. Architected the full backend: resident onboarding, authentication, role-based access, payment processing, and notifications deployed on AWS EC2.
+            </p>
+            <div class="proj-impact">✓ In production · Serving real users</div>
+            <div class="chip-row">
+              <span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">AWS EC2</span><span class="chip">Nginx</span><span class="chip">Redis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-inner">
+              <div class="proj-thumb-icon">🤖</div>
+              <span>AI Chatbot<br>System</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-header">
+              <div class="proj-name">AI-Powered Real Estate Chatbot</div>
+              <span class="proj-status wip">In Progress</span>
+            </div>
+            <p class="proj-desc">
+              LLM-powered assistant for real estate interactions, leads qualification, handling property queries, user engagement, and automated response generation through custom conversation logic and prompt engineering patterns.
+            </p>
+            <div class="proj-impact">→ RAG architecture + LLM reasoning</div>
+            <div class="chip-row">
+              <span class="chip">Python</span><span class="chip">LLM</span><span class="chip">FastAPI</span><span class="chip">NLP</span><span class="chip">Prompt & AI Engineering</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-inner">
+              <div class="proj-thumb-icon">⚡</div>
+              <span>Code Gen<br>Pipeline</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-header">
+              <div class="proj-name">LLaMA Code Generation Pipeline</div>
+              <span class="proj-status">Complete</span>
+            </div>
+            <p class="proj-desc">
+              A human-agent-less automation pipeline using fine-tuned Meta LLaMA for code generation, completion and review. Reduces repetitive engineering effort through optimized LLM inference tuned for software tasks.
+            </p>
+            <div class="proj-impact">→ Fine-tuned on software engineering tasks</div>
+            <div class="chip-row">
+              <span class="chip">Meta LLaMA</span><span class="chip">Fine-tuning</span><span class="chip">Python</span><span class="chip">Automation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-inner">
+              <div class="proj-thumb-icon">🔬</div>
+              <span>ML Health<br>Prediction</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-header">
+              <div class="proj-name">Liver Disease Prediction Model</div>
+              <span class="proj-status">Complete</span>
+            </div>
+            <p class="proj-desc">
+              End-to-end machine learning pipeline for predicting acute liver disease from clinical data. Covers data cleaning, feature engineering, model training, and evaluation with scikit-learn and TensorFlow.
+            </p>
+            <div class="proj-impact">→ Classification with clinical data validation</div>
+            <div class="chip-row">
+              <span class="chip">Deep Learning</span><span class="chip">TensorFlow</span><span class="chip">pandas</span><span class="chip">Keras</span><span class="chip">Google Colab</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── SKILLS ── -->
+    <section class="section" id="skills">
+      <div class="section-label">Skills</div>
+
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="sg-title">Backend Engineering</div>
+          <div class="sg-sub">Primary stack</div>
+          <div class="sg-pills">
+            <span class="sg-pill core">Python</span>
+            <span class="sg-pill core">FastAPI</span>
+            <span class="sg-pill core">Django</span>
+            <span class="sg-pill core">PostgreSQL</span>
+            <span class="sg-pill core">Redis</span>
+            <span class="sg-pill core">Payment APIs</span>
+            <span class="sg-pill">SQLAlchemy</span>
+            <span class="sg-pill">REST API Design</span>
+            <span class="sg-pill">JWT / RBAC</span>
+            <span class="sg-pill">Pydantic</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="sg-title">AI / Machine Learning</div>
+          <div class="sg-sub">Applied & production</div>
+          <div class="sg-pills">
+            <span class="sg-pill core">Google Colab</span>
+            <span class="sg-pill core">NLP</span>
+            <span class="sg-pill core">TensorFlow</span>
+            <span class="sg-pill core">Keras</span>
+            <span class="sg-pill core">scikit-learn</span>
+            <span class="sg-pill core">LLM Fine-tuning</span>
+            <span class="sg-pill core">Predictive Modeling</span>
+            <span class="sg-pill core">Prompt Engineering</span>
+            <span class="sg-pill">Meta LLaMA</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="sg-title">DevOps & Cloud</div>
+          <div class="sg-sub">Infrastructure & deployment</div>
+          <div class="sg-pills">
+            <span class="sg-pill core">Docker</span>
+            <span class="sg-pill core">AWS EC2</span>
+            <span class="sg-pill core">Nginx</span>
+            <span class="sg-pill core">Docker Compose</span>
+            <span class="sg-pill">GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="sg-title">Data & Analytics</div>
+          <div class="sg-sub">Supporting skills</div>
+          <div class="sg-pills">
+            <span class="sg-pill core">pandas</span>
+            <span class="sg-pill core">NumPy</span>
+            <span class="sg-pill core">Jupyter</span>
+            <span class="sg-pill core">Data Visualization</span>
+            <span class="sg-pill core">Feature Engineering</span>
+            <span class="sg-pill core">Trend Analysis</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section class="section" id="contact">
+      <div class="section-label">Contact</div>
+
+      <p class="contact-intro">
+        I'm currently open to full-time backend engineering roles, AI/ML projects, and selective freelance work. If you're building something meaningful, I had love to hear about it.
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:akinpeluoluwadamilare79@gmail.com" class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div>
+            <span class="contact-item-label">Email</span>
+            <span class="contact-item-val">akinpeluoluwadamilare79@gmail.com</span>
+          </div>
+        </a>
+        <a href="tel:+2347068589268" class="contact-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.63 19.79 19.79 0 01.1 1.06 2 2 0 012.1 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          <div>
+            <span class="contact-item-label">Phone</span>
+            <span class="contact-item-val">+234 706-858-9268</span>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/akinpelu-oluwadamilare-547801256/" target="_blank" rel="noopener" class="contact-item">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          <div>
+            <span class="contact-item-label">LinkedIn</span>
+            <span class="contact-item-val">https://www.linkedin.com/in/akinpelu-oluwadamilare-547801256/</span>
+          </div>
+        </a>
+        <div class="contact-item" style="cursor:default; pointer-events:none;">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <span class="contact-item-label">Location</span>
+            <span class="contact-item-val">Lagos, Nigeria · Remote worldwide</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="mailto:akinpeluoluwadamilare79@gmail.com" class="cta-btn">
+        <span>Say hello</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
+      <div class="footer-note">
+        Powered by <span style="color:var(--teal)">Oluwadamilare Victor</span>. © 2026. All rights reserved.
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+/* ── Scroll spy: highlight active nav link ── */
+const sections = document.querySelectorAll('section[id]');
+const navLinks  = document.querySelectorAll('.nav-list .nav-item a, .mobile-nav a');
+
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelectorAll(`a[href="#${entry.target.id}"]`);
+      active.forEach(l => l.classList.add('active'));
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+sections.forEach(s => spy.observe(s));
+
+/* ── Section fade-in on scroll ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+document.querySelectorAll('.section').forEach((el, i) => {
+  el.style.transitionDelay = `${i === 0 ? 0 : 0.1}s`;
+  revealObs.observe(el);
+});
+
+/* ── Smooth scroll for all anchor links ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
