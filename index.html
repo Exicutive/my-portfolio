@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Oluwadamilare Victor — Backend & AI Engineer</title>
-<meta name="description" content="Backend Engineer and AI Developer based in Lagos, Nigeria. Specializing in Python, FastAPI, PostgreSQL, Docker, AWS, and LLM systems." />
+<title>Oluwadamilare Victor — Software Engineer & AI Engineer</title>
+<meta name="description" content="Software Engineer and AI Developer based in Lagos, Nigeria. Specializing in Python, Django,FastAPI, PostgreSQL, Docker, AWS, and LLM systems." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet" />
 <style>
@@ -111,7 +111,7 @@ a:hover { color: var(--teal); }
   color: var(--slate);
   max-width: 220px;
   line-height: 1.65;
-  margin-bottom: 48px;
+  margin-bottom: 20px;
 }
 
 /* nav links */
@@ -467,6 +467,76 @@ main {
   border-left: 2px solid var(--teal);
 }
 
+.proj-kicker {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 8px;
+}
+
+.proj-features {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+}
+
+.proj-features li {
+  font-size: 12px;
+  color: var(--slate);
+  line-height: 1.5;
+  padding-left: 12px;
+  position: relative;
+}
+
+.proj-features li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+}
+
+.proj-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.proj-stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.proj-stack-label {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--slate);
+  width: 108px;
+  flex-shrink: 0;
+}
+
+.proj-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  color: var(--teal);
+  text-decoration: none;
+  letter-spacing: .04em;
+}
+
+.proj-link:hover { text-decoration: underline; }
+
 /* ─────────────────────────────────────────
    SKILLS
 ───────────────────────────────────────── */
@@ -582,6 +652,23 @@ main {
   transform: translateY(-2px);
 }
 
+.cta-primary {
+  background: var(--teal);
+  color: #0a0f1a;
+  border-color: var(--teal);
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.cta-primary:hover {
+  background: #8dffeb;
+  color: #0a0f1a;
+}
+
+.sidebar .cta-primary { margin-bottom: 36px; }
+
+.proj-body .cta-primary { margin-top: 4px; }
+
 /* ─────────────────────────────────────────
    FOOTER
 ───────────────────────────────────────── */
@@ -678,6 +765,8 @@ main {
   .section-label { font-size: 11px; }
   .exp-role { font-size: 14px; flex-wrap: wrap; }
   .proj-name { font-size: 14px; }
+  .proj-features { grid-template-columns: 1fr; }
+  .proj-stack-label { width: 100%; }
 }
 
 /* ─────────────────────────────────────────
@@ -720,8 +809,13 @@ main {
     <div class="sidebar-top">
       <div class="avail-badge">Available for work</div>
       <h1 class="name">Oluwadamilare<br>Victor</h1>
-      <p class="title">Backend Engineer &amp; AI Developer</p>
+      <p class="title">Software Engineer &amp; AI Developer</p>
       <p class="tagline">I build scalable APIs, cloud infrastructure, and intelligent AI systems.</p>
+
+      <a class="cta-btn cta-primary" href="https://lcrng.com/" target="_blank" rel="noopener">
+        <span>Live Website</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
 
       <nav aria-label="Page sections">
         <ul class="nav-list">
@@ -765,10 +859,10 @@ main {
     <!-- ── ABOUT ── -->
     <section class="section" id="about">
       <p class="about-intro" style="text-align: justify;">
-        I'm a <strong>backend engineer</strong> based in Lagos, Nigeria, focused on building high-performance systems that power real-world products. Currently at <strong>Landmark Corporate Realty Limited</strong>, where I architect the APIs, databases, and infrastructure that run a production real estate platform.
+        I'm a <strong>software engineer</strong> based in Lagos, Nigeria, focused on building high-performance systems that power real-world products. Currently at <strong>Bondsynergy Holdings Limited</strong>, where I architect the APIs, databases, and infrastructure that run a production real estate platform.
       </p>
       <p class="about-intro" style="text-align: justify;">
-        My work sits at the intersection of <strong>backend engineering</strong> and <strong>AI/LLM development</strong>, from fine-tuning language models and building intelligent pipelines, to designing secure, scalable cloud deployments on <strong>AWS</strong> with Docker and FastAPI.
+        My work sits at the intersection of <strong>software engineering</strong> and <strong>AI/LLM development</strong>, from fine-tuning language models and building intelligent pipelines, to designing secure, scalable cloud deployments on <strong>AWS</strong> with Docker and FastAPI.
       </p>
       <p class="about-intro" style="text-align: justify;">
         I'm drawn to hard problems: systems that need to be fast, reliable and maintainable under pressure.
@@ -792,10 +886,30 @@ main {
 
         <div class="exp-card">
           <div class="exp-top">
+            <span class="exp-period">Jul 2026 — Present</span>
+            <div class="exp-right">
+              <div class="exp-role">
+                Python Programming Tutor <span class="at">@ CyanGeek Academy</span>
+              </div>
+              <div class="exp-company-sub">Remote · Contract</div>
+              <p class="exp-desc">
+                Teach Python programming through structured lessons covering fundamentals, problem-solving, and practical projects. Guide learners with one-on-one support, code reviews, and clear explanations that help them write working programs independently.
+              </p>
+              <div class="chip-row">
+                <span class="chip">Python</span>
+                <span class="chip">Tutoring</span>
+                <span class="chip">Curriculum</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
             <span class="exp-period">Jun 2025 — Present</span>
             <div class="exp-right">
               <div class="exp-role">
-                Backend Developer <span class="at">@ Landmark Corporate Realty Limited</span>
+                Software Engineer <span class="at">@ Bondsynergy Holdings Limited</span>
               </div>
               <div class="exp-company-sub">Lagos, Nigeria · Full-time</div>
               <p class="exp-desc">
@@ -890,21 +1004,109 @@ main {
           <div class="proj-thumb">
             <div class="proj-thumb-inner">
               <div class="proj-thumb-icon">🏢</div>
-              <span>Real Estate<br>Platform</span>
+              <span>Indwella<br>Estate App</span>
             </div>
           </div>
           <div class="proj-body">
             <div class="proj-header">
-              <div class="proj-name">Real Estate Management Application</div>
+              <div class="proj-name">Indwella – Estate Management Mobile Application</div>
               <span class="proj-status">Complete</span>
             </div>
             <p class="proj-desc">
-              Production backend for a multi-tenant real estate application. Architected the full backend: resident onboarding, authentication, role-based access, payment processing, and notifications deployed on AWS EC2.
+              A multi-role estate management mobile application that simplifies residential estate operations and improves communication between residents, estate administrators, and security personnel.
             </p>
-            <div class="proj-impact">✓ In production · Serving real users</div>
-            <div class="chip-row">
-              <span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Docker</span><span class="chip">AWS EC2</span><span class="chip">Nginx</span><span class="chip">Redis</span>
+            <p class="proj-desc">
+              The application provides a centralized platform for managing estate activities, resident services, visitor access, and estate-related transactions.
+            </p>
+            <div class="proj-kicker">Key features</div>
+            <ul class="proj-features">
+              <li>Resident account management and profiles.</li>
+              <li>Visitor management and access code generation.</li>
+              <li>Security personnel visitor verification.</li>
+              <li>Estate announcements and notifications.</li>
+              <li>Resident wallet and service charge management.</li>
+              <li>Estate administration and management tools.</li>
+              <li>Push notifications and real-time updates.</li>
+            </ul>
+            <div class="proj-kicker">User roles</div>
+            <ul class="proj-features">
+              <li><strong>Residents:</strong> Manage profiles, visitors, wallets, and estate services.</li>
+              <li><strong>Administrators:</strong> Manage residents, estate operations, and communications.</li>
+              <li><strong>Security Personnel:</strong> Verify visitor access and manage entry activities.</li>
+            </ul>
+            <div class="proj-kicker">Technology stack</div>
+            <div class="proj-stack">
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Mobile</span>
+                <span class="chip">React Native</span>
+              </div>
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Backend</span>
+                <span class="chip">Python</span>
+                <span class="chip">FastAPI</span>
+                <span class="chip">PostgreSQL</span>
+                <span class="chip">Redis</span>
+              </div>
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Services</span>
+                <span class="chip">Docker</span>
+                <span class="chip">Firebase Cloud Messaging</span>
+                <span class="chip">Paystack</span>
+              </div>
             </div>
+            <div class="proj-impact">✓ Android APK available for testing</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-inner">
+              <div class="proj-thumb-icon">🏘️</div>
+              <span>FOI<br>Developments</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-header">
+              <div class="proj-name">FOI Developments Website</div>
+              <span class="proj-status">Complete</span>
+            </div>
+            <p class="proj-desc">
+              A polished real estate advisory and property discovery website for FOI Developments, presenting Nigerian land and property investment opportunities with a refined, trust-led digital experience.
+            </p>
+            <div class="proj-impact">→ Property listings, investment advisory, and clear enquiry paths</div>
+            <div class="chip-row">
+              <span class="chip">Real Estate</span><span class="chip">Property Listings</span><span class="chip">Responsive Website</span>
+            </div>
+            <a class="cta-btn cta-primary" href="https://www.foidevs.com" target="_blank" rel="noopener">
+              <span>Live Website</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-inner">
+              <div class="proj-thumb-icon">🗺️</div>
+              <span>Lutex<br>Spatial</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-header">
+              <div class="proj-name">Lutex Spatial Website</div>
+              <span class="proj-status">Complete</span>
+            </div>
+            <p class="proj-desc">
+              A professional website for Lutex Survey &amp; Planning Services, clearly presenting land surveying and geospatial capabilities for property, development, and infrastructure projects.
+            </p>
+            <div class="proj-impact">→ Service discovery, project highlights, and streamlined survey enquiries</div>
+            <div class="chip-row">
+              <span class="chip">Geospatial Services</span><span class="chip">Land Surveying</span><span class="chip">Responsive Website</span>
+            </div>
+            <a class="cta-btn cta-primary" href="https://www.lutexspatial.com" target="_blank" rel="noopener">
+              <span>Live Website</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
 
@@ -912,21 +1114,70 @@ main {
           <div class="proj-thumb">
             <div class="proj-thumb-inner">
               <div class="proj-thumb-icon">🤖</div>
-              <span>AI Chatbot<br>System</span>
+              <span>Virtual<br>Assistant</span>
             </div>
           </div>
           <div class="proj-body">
             <div class="proj-header">
-              <div class="proj-name">AI-Powered Real Estate Chatbot</div>
-              <span class="proj-status wip">In Progress</span>
+              <div class="proj-name">AI-Powered Real Estate Virtual Assistant</div>
+              <span class="proj-status">Complete</span>
             </div>
             <p class="proj-desc">
-              LLM-powered assistant for real estate interactions, leads qualification, handling property queries, user engagement, and automated response generation through custom conversation logic and prompt engineering patterns.
+              Designed, developed, and deployed a full-cycle AI-powered real estate virtual assistant that automates customer interactions, property discovery, lead qualification, and the property application process.
             </p>
-            <div class="proj-impact">→ RAG architecture + LLM reasoning</div>
-            <div class="chip-row">
-              <span class="chip">Python</span><span class="chip">LLM</span><span class="chip">FastAPI</span><span class="chip">NLP</span><span class="chip">Prompt & AI Engineering</span>
+            <p class="proj-desc">
+              The system understands natural Nigerian real estate language and guides prospective buyers from their initial enquiries through property recommendations, visit scheduling, and application form submission. Integrated on the Landmark Corporate Realty website.
+            </p>
+            <div class="proj-kicker">Key features</div>
+            <ul class="proj-features">
+              <li>Intelligent conversational AI with company-specific knowledge.</li>
+              <li>Hybrid Retrieval-Augmented Generation (RAG) using FAISS and Pinecone.</li>
+              <li>Property search and personalised recommendations.</li>
+              <li>Automated lead capture, qualification, and scoring (Hot/Warm/Nurture).</li>
+              <li>Property visit scheduling and automated reminders.</li>
+              <li>Virtual property tours.</li>
+              <li>Dynamic property application forms and PDF generation.</li>
+              <li>Context-aware conversational memory.</li>
+              <li>Automated follow-ups and re-engagement campaigns.</li>
+              <li>Live agent handover.</li>
+              <li>Comprehensive administrative dashboard.</li>
+            </ul>
+            <div class="proj-kicker">Technology stack</div>
+            <div class="proj-stack">
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Backend</span>
+                <span class="chip">Python</span>
+                <span class="chip">FastAPI</span>
+                <span class="chip">SQLAlchemy</span>
+                <span class="chip">PostgreSQL</span>
+                <span class="chip">Redis</span>
+                <span class="chip">Celery</span>
+              </div>
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">AI / ML</span>
+                <span class="chip">GPT-4</span>
+                <span class="chip">LangGraph</span>
+                <span class="chip">FAISS</span>
+                <span class="chip">Pinecone</span>
+                <span class="chip">Sentence Transformers</span>
+              </div>
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Frontend</span>
+                <span class="chip">React</span>
+                <span class="chip">Tailwind CSS</span>
+                <span class="chip">Socket.IO</span>
+              </div>
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Infrastructure</span>
+                <span class="chip">Docker</span>
+                <span class="chip">SendGrid</span>
+                <span class="chip">Hugging Face</span>
+              </div>
             </div>
+            <a class="cta-btn cta-primary" href="https://lcrng.com/" target="_blank" rel="noopener">
+              <span>Live Website</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
 
