@@ -38,12 +38,46 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(38, 125, 143, .20), transparent 30rem),
+    radial-gradient(circle at 88% 18%, rgba(48, 74, 150, .18), transparent 34rem),
+    radial-gradient(circle at 52% 100%, rgba(10, 91, 101, .12), transparent 34rem),
+    var(--bg);
+  background-attachment: fixed;
   color: var(--slate);
   font-family: var(--ff-sans);
   font-size: 15px;
   line-height: 1.7;
   overflow-x: hidden;
+}
+
+/* A quiet technical grid keeps the dark canvas dimensional without competing with content. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(132, 169, 196, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(132, 169, 196, .035) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), transparent 88%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), transparent 88%);
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  width: 38rem;
+  height: 38rem;
+  right: -20rem;
+  bottom: -23rem;
+  pointer-events: none;
+  border-radius: 50%;
+  background: rgba(100, 255, 218, .09);
+  filter: blur(80px);
+  z-index: 0;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -72,6 +106,8 @@ a:hover { color: var(--teal); }
   margin: 0 auto;
   padding: 0 24px;
   gap: 0 80px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ─────────────────────────────────────────
@@ -991,7 +1027,7 @@ main {
 
     <!-- ── PROJECTS ── -->
     <section class="section" id="projects">
-      <div class="section-label">Projects</div>
+      <div class="section-label">Selected Projects</div>
 
       <div class="proj-list">
 
@@ -1215,6 +1251,68 @@ main {
             </div>
             <a class="cta-btn cta-primary" href="https://lcrng.com/" target="_blank" rel="noopener">
               <span>Live Website</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-thumb">
+            <div class="proj-thumb-inner">
+              <div class="proj-thumb-icon">🤖</div>
+              <span>Data Science<br>Research</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-header">
+              <div class="proj-name">Nigerian Real Estate Price Analysis & Machine Learning</div>
+              <span class="proj-status">Complete</span>
+            </div>
+            <p class="proj-desc">
+              Conducted an end-to-end data science research project analysing Nigerian real estate price patterns using statistical methods and machine learning techniques.
+            </p>
+            <p class="proj-desc">
+              Developed models for property price anomaly detection and time-series forecasting, alongside statistical analysis to investigate relationships between property prices, locations, categories, and temporal patterns.
+            </p>
+            <div class="proj-kicker">Key features</div>
+            <ul class="proj-features">
+              <li>Exploratory Data Analysis (EDA) and statistical hypothesis testing.</li>
+              <li>Real estate price trend analysis and inflation comparison.</li>
+              <li>Property price anomaly detection using Random Forest, XGBoost, and Isolation Forest.</li>
+              <li>Time-series forecasting using Prophet and regression models.</li>
+              <li>Explainable AI using SHAP, Permutation Feature Importance, and Partial Dependence Plots.</li>
+              <li>Model evaluation using accuracy, precision, recall, F1-score, ROC-AUC, MAE, RMSE, and R².</li>
+              <li>Temporal cross-validation and training-data sensitivity analysis.</li>
+            </ul>
+            <div class="proj-kicker">Technology stack</div>
+            <div class="proj-stack">
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Backend</span>
+                <span class="chip">Python</span>
+                <span class="chip">Pandas</span>
+                <span class="chip">Numpy</span>
+                <span class="chip">SciPy</span>
+                <span class="chip">Statsmodels</span>
+            
+              </div>
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">AI / ML</span>
+                <span class="chip">Scikit-learn</span>
+                <span class="chip">XGBoost</span>
+                <span class="chip">SHAP</span>
+                <span class="chip">Prophet</span>
+                <span class="chip">Matplotlib</span>
+                <span class="chip">Seaborn</span>
+              </div>
+        
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Infrastructure</span>
+                <span class="chip">Jupyter Notebook</span>
+                <span class="chip">Hugging Face Dataset</span>
+              </div>
+            </div>
+            <a class="cta-btn cta-primary" href="https://drive.google.com/file/d/1D3Sl2N80uQMDXGFg29aaT9saPxbhWcZd/view?usp=sharing" target="_blank" rel="noopener">
+              <span>View Project</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
