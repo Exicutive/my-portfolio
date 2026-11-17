@@ -1307,7 +1307,7 @@ main {
         
               <div class="proj-stack-row">
                 <span class="proj-stack-label">Infrastructure</span>
-                <span class="chip">Jupyter Notebook</span>
+                <span class="chip">Google Colab</span>
                 <span class="chip">Hugging Face Dataset</span>
               </div>
             </div>
@@ -1353,12 +1353,46 @@ main {
               <span class="proj-status">Complete</span>
             </div>
             <p class="proj-desc">
-              End-to-end machine learning pipeline for predicting acute liver disease from clinical data. Covers data cleaning, feature engineering, model training, and evaluation with scikit-learn and TensorFlow.
+              Conducted an end-to-end deep learning project to classify liver images as normal or abnormal using convolutional neural networks and transfer learning.
             </p>
-            <div class="proj-impact">→ Classification with clinical data validation</div>
-            <div class="chip-row">
-              <span class="chip">Deep Learning</span><span class="chip">TensorFlow</span><span class="chip">pandas</span><span class="chip">Keras</span><span class="chip">Google Colab</span>
+            <p class="proj-desc">
+              Built and compared four image classification models (VGG16, ResNet50V2, MobileNetV2, and a custom CNN) on a small medical image dataset, with data augmentation and evaluation across multiple classification and error metrics.
+            </p>
+            <div class="proj-kicker">Key features</div>
+            <ul class="proj-features">
+              <li>Image data cleaning, including detection and removal of corrupted files.</li>
+              <li>Data augmentation (random flip, rotation, and zoom) to reduce overfitting on a small dataset.</li>
+              <li>Property search and personalised recommendations.</li>
+              <li>Efficient input pipeline using tf.data with parallel loading and prefetching.</li>
+              <li>Transfer learning with ImageNet-pretrained VGG16, ResNet50V2, and MobileNetV2, compared against a custom CNN.</li>
+              <li>Model evaluation using confusion matrix, precision, recall, F1-score, ROC-AUC, MAE, and RMSE.</li>
+              <li>Model persistence in Keras format and an inference workflow for predicting on new images.</li>
+            </ul>
+            <div class="proj-kicker">Technology stack</div>
+            <div class="proj-stack">
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Backend</span>
+                <span class="chip">Python</span>
+                <span class="chip">Numpy</span>
+                <span class="chip">Pillow (PIL)</span>
+              </div>
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">AI / ML</span>
+                <span class="chip">TensorFlow</span>
+                <span class="chip">Transfer Learning</span>
+                <span class="chip">Custom CNN</span>
+                <span class="chip">Keras</span>
+              </div>
+
+              <div class="proj-stack-row">
+                <span class="proj-stack-label">Infrastructure</span>
+                <span class="chip">Google Colab</span>
+              </div>
             </div>
+            <a class="cta-btn cta-primary" href="https://drive.google.com/drive/folders/1cdGa9Mu9t1GQrzVH3J9o0sGhGQldDxOR?usp=sharing" target="_blank" rel="noopener">
+              <span>View Project</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
 
